@@ -1,0 +1,21 @@
+# Môi trường ảo Python (Virtual Environments)
+venv/
+.venv/
+env/
+
+# File bộ nhớ tạm do Python tự tạo khi biên dịch
+__pycache__/
+*.pyc
+*.pyo
+
+# Thư mục chứa dữ liệu PDF đầu vào (không đẩy tài liệu cá nhân lên)
+data_pdf/*
+!.gitkeep
+
+# File cấu hình môi trường/Bảo mật
+.env
+
+# Cấu hình IDE / Trình soạn thảo code
+.vscode/
+.idea/
+*.swp
