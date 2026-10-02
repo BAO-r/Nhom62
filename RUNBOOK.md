@@ -22,6 +22,7 @@ Hệ thống đa tác tử (Multi-Agent System) tự động phân tích, phản
    ollama pull qwen2.5:7b
 3. Chạy mô hình AI-Ollama
    ```bash
+   ollama serve
    ollama run qwen2.5:7b
    
  Bước 2: Cài đặt môi trường ảo cho python
@@ -36,4 +37,11 @@ Hệ thống đa tác tử (Multi-Agent System) tự động phân tích, phản
    pip install crewai pypdf pathlib
 
 ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
