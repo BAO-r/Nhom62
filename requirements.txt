@@ -1,0 +1,7 @@
+ollama>=3.10.6
+crewai
+pypdf
+pathlib
+langchain
+langchain-ollama
+langchain-chroma
