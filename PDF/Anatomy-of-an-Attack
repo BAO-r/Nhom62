@@ -1,0 +1,61 @@
+Anatomy of an Attack: The "BlackSuit Blitz" at a Global Equipment Manufacturer Unit 42 recently 
+assisted a prominent manufacturer who experienced a severe ransomware attack orchestrated by 
+Ignoble Scorpius, the group that distributes BlackSuit ransomware. This incident serves as a reminder of 
+how a seemingly minor issue — in this case, a single set of compromised VPN credentials — can lead to 
+a full-scale corporate crisis with tremendous impact to the bottom line. The Attack: A Combination of 
+Reconnaissance and Ransomware The Ignoble Scorpius attack began with a voice phishing (vishing) call. 
+The attacker impersonated the company's IT help desk and tricked an employee into entering their 
+legitimate VPN credentials on a phishing site. With these credentials, the threat actor gained initial 
+network access and immediately escalated their privileges. They executed a DCSync attack on a domain 
+controller to steal highly privileged credentials, including a key service account. Using these 
+compromised credentials, they moved laterally across the network using RDP and SMB, employing tools 
+like Advanced IP Scanner and SMBExec to map the network and identify high-value targets. The 
+attackers established persistence by deploying AnyDesk and a custom RAT on a domain controller, 
+configured as a scheduled task to survive reboots. It is important to note that threat actors often abuse 
+and take advantage of legitimate products like AnyDesk for malicious purposes. We are not implying 
+that the legitimate product is flawed. The attackers then compromised a second domain controller, 
+extracting the NTDS.dit database containing all user password hashes, and exfiltrated over 400 GB of 
+data using a renamed rclone utility. To cover their tracks, the threat actors deployed CCleaner to erase 
+forensic evidence before unleashing the final blow: BlackSuit ransomware, orchestrated through 
+Ansible, simultaneously encrypted hundreds of virtual machines across approximately 60 VMware ESXi 
+hosts, disrupting operations across the entire infrastructure. How Unit 42 Helped When Unit 42 was 
+engaged, we helped the client expand their Cortex XDR deployment from 250 to over 17,000 endpoints, 
+providing enterprise-wide visibility to track the attacker's every move. We also leveraged Cortex XSOAR 
+to automate containment actions, stopping the attack from spreading further. Our investigation 
+identified the full attack path and led to some critical recommendations including: 
+● Network Security: Replace end-of-life Cisco ASA firewalls with Next-Gen Firewalls (NGFW), implement 
+network segmentation, and restrict administrative access to critical systems (like DCs and ESXi hosts) to 
+dedicated management VLANs.
+ ● Identity and Access Management: Enforce MFA for all remote access, disable NTLM or require EPA, 
+rotate all credentials, and restrict service accounts from being used for interactive logons like RDP. 
+● Endpoint and Server Hardening: Block EFSRPC using RPC filters to prevent PetitPotam/DCSync attacks, 
+deploy and maintain a fully patched XDR solution on all endpoints, and have a strict policy for removing 
+EOL systems. 
+● Logging and Monitoring: Enhance log retention to 90+ days for critical sources (ESXi, firewalls, Nasuni),
+ensure logs are properly parsed for effective analysis, and enable features like AWS CloudTrail log 
+validation. The Outcome The client was able to achieve several key outcomes: 
+● Financial demand negated: We successfully negated the $20 million ransom demand, ensuring the 
+client paid no ransom. 
+● Expanded visibility: The engagement expanded the client’s endpoint visibility from 250 to over 17,000,
+creating a robust foundation for future security operations. 
+● Strategic guidance: We provided bespoke, strategic after-incident guidance, helping the client fortify 
+their defenses and prevent future attacks. 
+● Continuous monitoring: Following the incident, the client onboarded Unit 42 Managed Detection and 
+Response (MDR) services for continuous monitoring, ensuring they are better prepared to handle future 
+threats. The Takeaway This attack serves as a stark reminder that even a single compromised credential 
+can create a domino effect, leading to a catastrophic security breach. The swift and sophisticated tactics 
+of threat actors like Ignoble Scorpius demonstrate the critical need for a proactive and multi-layered 
+defense strategy. By implementing MFA on all remote access points, and integrating robust endpoint 
+visibility, automated containment, and expert guidance, organizations can not only disrupt an attack in 
+progress but also shore up their defenses to prevent future incidents. Most importantly, investments in 
+proactive security assessments have shown to pay dividends that far outweigh the costs of operational 
+and financial impact of a full-scale ransomware attack. Interested in learning more about the latest 
+attack trends? If so, take a look at our 2025 Unit 42 Global Incident Response Report, which distills the 
+most critical findings based on our direct experience responding to real-world cyberattacks at over 500 
+organizations across 38 countries. Additional Resources 
+● Nine stories of Unit 42 in action 
+● The state of cybersecurity incident response 
+● 42 tips on your road to cyber resilience About Unit 42 Unit 42 strengthens your team with the tools 
+and expertise needed to stay ahead of threats and protect your business. With our proven strategies 
+and insights from thousands of engagements, we’ll help your team handle the toughest situations with 
+confidence.
