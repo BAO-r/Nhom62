@@ -1,1 +1,218 @@
-
+BlackCat (hay còn gọi là ALPHV) là một họ mã độc tống tiền xuất hiện vào giữa 
+tháng 11 năm 2021 và nhanh chóng nổi tiếng nhờ sự tinh vi và sáng tạo của nó. 
+Hoạt động theo mô hình kinh doanh mã độc tống tiền dưới dạng dịch vụ (RaaS), 
+BlackCat được phát hiện đang tìm kiếm các đối tác liên kết trên các diễn đàn tội 
+phạm mạng nổi tiếng, đề nghị cho phép các đối tác sử dụng mã độc tống tiền và 
+giữ 80-90% số tiền chuộc. Phần còn lại sẽ được trả cho tác giả của BlackCat.
+Nhóm BlackCat đã có cách tiếp cận quyết liệt trong việc nêu tên và bêu xấu các 
+nạn nhân, liệt kê hơn chục nạn nhân trên trang web rò rỉ thông tin của chúng chỉ 
+trong hơn một tháng. Số lượng nạn nhân lớn nhất của nhóm này cho đến nay là 
+các tổ chức của Mỹ, nhưng BlackCat và các chi nhánh của nó cũng đã tấn công các 
+tổ chức ở châu Âu, Philippines và các địa điểm khác. Các nạn nhân bao gồm các tổ
+chức trong các lĩnh vực sau: xây dựng và kỹ thuật, bán lẻ, vận tải, dịch vụ thương 
+mại, bảo hiểm, máy móc, dịch vụ chuyên nghiệp, viễn thông, linh kiện ô tô và 
+dược phẩm.
+Việc sử dụng mã độc tống tiền BlackCat đã phát triển nhanh chóng vì nhiều lý do 
+(để so sánh, AvosLocker chỉ công khai một số ít nạn nhân trong vòng hai tháng 
+sau khi được biết đến). Tiếp thị hiệu quả tới các đối tác liên kết có thể là một yếu 
+tố – ngoài việc đưa ra mức chia tiền chuộc hấp dẫn, nhóm này còn tìm kiếm các 
+đối tác liên kết bằng cách đăng quảng cáo trên các diễn đàn như Ransomware 
+Anonymous Market Place (RAMP).
+Phần mềm độc hại này được lập trình bằng ngôn ngữ Rust. Mặc dù đây không 
+phải là phần mềm độc hại đầu tiên sử dụng Rust, nhưng nó là một trong những 
+phần mềm tống tiền đầu tiên, nếu không phải là phần mềm đầu tiên, sử dụng 
+ngôn ngữ này. Bằng cách tận dụng ngôn ngữ lập trình này, các tác giả phần mềm 
+độc hại có thể dễ dàng biên dịch nó trên nhiều kiến trúc hệ điều hành khác nhau. 
+Với nhiều tùy chọn gốc, Rust có khả năng tùy chỉnh cao, điều này tạo điều kiện 
+thuận lợi cho việc chuyển hướng và cá nhân hóa các cuộc tấn công.
+Các nhóm tội phạm mạng lợi dụng BlackCat, thường được gọi là "băng đảng 
+BlackCat", sử dụng nhiều chiến thuật ngày càng phổ biến trong lĩnh vực mã độc 
+tống tiền. Đặc biệt, trong một số trường hợp, chúng sử dụng nhiều kỹ thuật tống 
+tiền khác nhau, bao gồm việc đánh cắp dữ liệu của nạn nhân trước khi triển khai 
+mã độc tống tiền, đe dọa công bố dữ liệu nếu tiền chuộc không được trả và các 
+cuộc tấn công từ chối dịch vụ phân tán (DDoS).
+Palo Alto Networks phát hiện và ngăn chặn mã độc tống tiền BlackCat bằng các 
+sản phẩm và dịch vụ sau: Cortex XDR và tường lửa thế hệ tiếp theo (bao 
+gồm cả các gói bảo mật dựa trên điện toán đám mây như WildFire) .
+Do sự gia tăng đột biến của các hoạt động độc hại này, chúng tôi đã lập ra bản 
+đánh giá mối đe dọa này nhằm nâng cao nhận thức chung.
+Tổng quan về phần mềm tống tiền BlackCat
+Thông qua các diễn đàn tội phạm mạng nổi tiếng, BlackCat đang tìm kiếm các đối 
+tác để triển khai phần mềm tống tiền của mình. Các đối tác này giữ 80-90% số tiền
+chuộc, phần còn lại thuộc về tác giả của BlackCat. Họ sẽ được phỏng vấn và kiểm 
+tra kỹ lưỡng trước khi được chấp nhận vào nhóm RaaS (Residential Service as a 
+Service). Sau khi được xác nhận, họ sẽ được cấp quyền truy cập riêng vào bảng 
+điều khiển dựa trên Tor, nơi lưu trữ quyền truy cập của họ.
+Được viết bằng tiếng Nga, bảng điều khiển cung cấp cho các đối tác liên kết thông 
+tin cập nhật và thông báo về việc triển khai và vận hành phần mềm tống tiền, 
+cũng như các mẹo khắc phục sự cố để giúp họ thành công hơn trong các chiến 
+dịch của mình. Cùng với bảng điều khiển, một blog công khai chỉ trích những nạn 
+nhân đã phớt lờ hoặc từ chối trả tiền chuộc cũng được lưu trữ. Trang web này 
+được cập nhật thường xuyên với các nạn nhân mới kể từ khi nhóm này được phát
+hiện lần đầu.
+Như thể hiện trong Hình 1 bên dưới, nhiều nhà điều hành RaaS sử dụng kỹ thuật 
+tống tiền kép bằng cách đánh cắp dữ liệu trước khi mã hóa, điều này giúp họ có 
+lợi thế lớn hơn trong việc thương lượng tiền chuộc. Tính đến tháng 12 năm 2021, 
+BlackCat có số lượng nạn nhân lớn thứ bảy được liệt kê trên trang web rò rỉ của 
+chúng trong số các nhóm ransomware được Unit 42 theo dõi – một con số ấn 
+tượng nếu xét đến việc nhóm này chỉ mới được biết đến rộng rãi từ tháng 11 năm
+2021. Trong khi Conti (xếp thứ hai) đã tồn tại dưới nhiều hình thức khác nhau 
+trong gần hai năm, nó lại bị bao quanh ở đầu bảng xếp hạng bởi các nhóm mới
+nổi . LockBit 2.0 và Hive đều có ít nhất sáu tháng đi trước BlackCat, nhưng điều 
+này làm nổi bật một xu hướng đáng lo ngại là những kẻ mới nổi (hoặc các nhóm 
+được cải tổ) có thể tấn công nhiều nạn nhân trong một thời gian ngắn.
+Dựa vào thông tin từ các trang web bị rò rỉ, chúng ta có thể hiểu được vị trí và loại
+hình nạn nhân bị ảnh hưởng bởi các cuộc tấn công BlackCat. Các nạn nhân bao 
+gồm các tổ chức trong các lĩnh vực sau: xây dựng và kỹ thuật, bán lẻ, vận tải, dịch 
+vụ thương mại, bảo hiểm, máy móc, dịch vụ chuyên nghiệp, viễn thông, linh kiện 
+ô tô và dược phẩm. Hình 2 thể hiện chi tiết các nạn nhân theo quốc gia. Tuy 
+nhiên, sự lây lan rải rác của các cuộc tấn công cho đến nay có thể cho thấy một 
+cách tiếp cận mang tính cơ hội, giống như hầu hết các loại mã độc tống tiền hiện 
+đại khác.
+Thông tin kỹ thuật chi tiết
+BlackCat có khả năng chuyển hướng sang các cuộc tấn công cá nhân hóa, tùy 
+chỉnh nhờ vào nhiều tùy chọn có sẵn khi lập trình bằng Rust (Hình 3). Lập trình 
+Rust đã trở nên phổ biến nhờ tốc độ nhanh và hiệu năng cao, khả năng phát triển 
+ứng dụng web mạnh mẽ, chi phí thấp cho lập trình nhúng và khả năng giải quyết 
+vấn đề quản lý bộ nhớ. Rust cũng hỗ trợ tác giả của BlackCat nhờ tính hiệu quả 
+của các thuật toán cung cấp khả năng mã hóa cho phần mềm tống tiền này. Do 
+tính hiệu quả và khả năng thích ứng, BlackCat đã được phát hiện nhắm mục tiêu 
+vào cả hệ thống Windows và Linux.
+Để duy trì khả năng hoạt động lâu dài, việc sử dụng cờ --access-token là bắt buộc 
+để thực thi phần mềm tống tiền, điều này có thể khiến việc phân tích trong môi 
+trường hộp cát trở nên khó khăn hơn.
+Cấu hình BlackCat
+Trong quá trình phân tích cấu hình mã độc tống tiền, chúng tôi đã quan sát thấy 
+nhiều chiến thuật né tránh được triển khai. Các kỹ thuật né tránh này được sử 
+dụng nhằm làm suy yếu hoặc vô hiệu hóa hệ thống phòng thủ cũng như ngăn 
+chặn một số ứng dụng có thể khóa các tập tin đang mở trên ổ đĩa, gây ra sự cố khi
+cố gắng mã hóa chúng. BlackCat cố gắng tắt một số tiến trình và dịch vụ để cản 
+trở hoặc ngăn chặn các giải pháp bảo mật và sao lưu. Danh sách các tiến trình đã 
+được kiểm tra như sau:
+agntsvc, dbeng50, dbsnmp, encsvc, excel, firefox, infopath, isqlplussvc, msaccess, 
+mspub, mydesktopqos, mydesktopservice, notepad, ocautoupds, ocomm, ocssd, 
+onenote, oracle, outlook, powerpnt, sqbcoreservice, sql, steam, synctime, 
+tbirdconfig, thebat, thunderbird, visio, winword, wordpad, xfssvccon, *sql*, 
+bedbh, vxmon, benetns, bengien, pvlsvr, beserver, raw_agent_svc, vsnapvss, 
+CagService, QBIDPService, QBDBMgrN, QBCFMonitorService, SAP, 
+TeamViewer_Service, TeamViewer, tv_w32, tv_x64, CVMountd, cvd, cvfwd, 
+CVODS, saphostexec, saposcol, sapstartsrv, avagent, avscc, DellSystemDetect, 
+EnterpriseClient, VeeamNFSSvc, VeeamTransportSvc, VeeamDeploymentSvc
+Các dịch vụ đang chạy trên hệ thống bị xâm nhập được kiểm tra so với danh sách 
+sau:
+mepocs, memtas, veeam, svc$, backup, sql, vss, msexchange, sql$, mysql, mysql$,
+sophos, MSExchange, MSExchange$, WSBExchange, PDVFSService, 
+BackupExecVSSProvider, BackupExecAgentAccelerator, BackupExecAgentBrowser,
+BackupExecDiveciMediaService, BackupExecJobEngine, 
+BackupExecManagementService, BackupExecRPCService, GxBlr, GxVss, GxClMgrS, 
+GxCVD, GxCIMgr, GXMMM, GxVssHWProv, GxFWD, SAPService, SAP, SAP$, 
+SAPD$, SAPHostControl, SAPHostExec, QBCFMonitorService, QBDBMgrN, 
+QBIDPService, AcronisAgent, VeeamNFSSvc, VeeamDeploymentService, 
+VeeamTransportSvc, MVArmor, MVarmor64, VSNAPVSS, AcrSch2Svc
+Để duy trì sự tồn tại, phần mềm tống tiền BlackCat loại trừ các thư mục hệ thống 
+và ứng dụng quan trọng – cũng như các thành phần quan trọng – khỏi quá trình 
+mã hóa nhằm tránh làm tê liệt hệ thống và phần mềm tống tiền. Các thư mục bị 
+loại trừ bao gồm:
+Thông tin ổ đĩa hệ thống, Intel, $windows.~ws, dữ liệu ứng dụng, $recycle.bin, 
+Mozilla, $windows.~bt, public, msocache, Windows, mặc định, tất cả người dùng, 
+trình duyệt Tor, programdata, boot, config.msi, Google, perflogs, appdata, 
+windows.old
+Các tên tệp bị loại trừ như sau:
+desktop.ini, autorun.inf, ntldr, bootect.bak, Thumbs.db, boot.ini, ntuser.dat, 
+iconcache.db, bootfont.bin, ntuser.ini, ntuser.dat.log
+Bất kỳ tệp nào có phần mở rộng trùng khớp với danh sách sau đây cũng sẽ bị loại 
+bỏ:
+themepack, nls, diagpkg, msi, lnk, exe, cab, scr, bat, drv, rtp, msp, prf, msc, ico, 
+key, ocx, diagcab, diagcfg, pdb, wpx, hlp, icns, rom, dll, msstyles, mod, ps1, ics, 
+hta, bin, cmd, ani, 386, lock, cur, idx, sys, com, deskthemepack, shs, ldf, theme, 
+mpa, nomedia, spl, cpl, adv, icl, msu
+Thông tin đăng nhập được mã hóa cứng và lưu trữ trong tệp cấu hình của phần 
+mềm tống tiền BlackCat củng cố khả năng rằng các nạn nhân cụ thể đang bị nhắm 
+mục tiêu. Thông tin đăng nhập này cũng cho phép BlackCat di chuyển ngang trong
+hệ thống và/hoặc mạng của nạn nhân, thường với quyền quản trị. Quyền truy cập 
+thông tin đăng nhập cho phép phần mềm tống tiền triển khai thêm các công cụ để
+tiếp tục lan rộng cuộc tấn công. Những quan sát này cũng đã 
+được Symantec xác nhận .
+Công cụ liên quan
+BlackCat đã được quan sát thấy sử dụng nhiều công cụ – thường là hợp pháp – 
+trong suốt các cuộc tấn công của chúng, chẳng hạn như Mimikatz, LaZagne và 
+WebBrowserPassView để khôi phục mật khẩu đã lưu trữ, cũng như GO Simple 
+Tunnel (GOST) và MEGAsync để đánh cắp dữ liệu. Ngoài ra, các công cụ chống 
+phân tích pháp y như fileshredder, một ứng dụng để xóa an toàn các tệp không 
+mong muốn mà không thể khôi phục, cũng đã được sử dụng trong một số cuộc 
+tấn công ransomware BlackCat mà Unit 42 đã điều tra.
+Các hoạt động sau thỏa hiệp
+Sau khi các hệ thống mục tiêu bị tấn công được xác định, phần mềm tống tiền sẽ 
+được triển khai và tất cả các tập tin khả thi sẽ bị mã hóa. Quá trình này thường 
+bao gồm việc đổi tên các tập tin để thêm một phần mở rộng tập tin khác, chẳng 
+hạn như wpzlbji , trong ví dụ được hiển thị trong Hình 4. Giống như các loại phần 
+mềm tống tiền khác, phần mềm tống tiền BlackCat sẽ để lại các ghi chú đòi tiền 
+chuộc trên hệ thống bị xâm nhập để thông báo cho nạn nhân về những gì đã xảy 
+ra và cách thức khôi phục dữ liệu của họ. Các tập tin văn bản có tên RECOVER
+[RANDOM]-FILES.txt (trong đó [RANDOM] đề cập đến tên phần mở rộng tập tin 
+đã đề cập ở trên) sẽ được tìm thấy trên hệ thống bị xâm nhập, chứa thông tin và 
+hướng dẫn
+BlackCat sử dụng một tên miền .onion độc nhất với khóa truy cập dành riêng cho 
+nạn nhân, cho phép nạn nhân tìm hiểu thêm về cuộc tấn công, dữ liệu của họ và 
+những gì kẻ tấn công muốn nạn nhân làm tiếp theo. Ví dụ URL sau đây minh họa 
+ký hiệu được phần mềm tống tiền BlackCat sử dụng:
+http://2cuqgeerjdba2rhdiviezodpu3lc4qz2sjf4qin6f7std2evleqlzjid[.]onion/?
+access-key=${ACCESS_KEY}","note_short_text":"Quan trọng
+Khi nạn nhân truy cập vào trang web onion được cung cấp, họ sẽ thấy một trang 
+web tương tự như Hình 5 bên dưới. Trang web này nhắc lại vấn đề và khẳng định 
+rằng khóa riêng của ứng dụng Decrypt App của kẻ tấn công là cách duy nhất để 
+lấy lại dữ liệu. Cổng thông tin này cũng cung cấp chức năng trò chuyện trực tuyến,
+số tiền chuộc – có thể khác nhau tùy thuộc vào thời điểm gửi thanh toán – cách 
+thức thanh toán và cách kiểm tra xem quá trình giải mã có hoạt động hay không.
+Đơn vị 42 đã ghi nhận các chi nhánh của BlackCat yêu cầu khoản tiền chuộc lên tới
+14 triệu đô la, mặc dù chúng đề nghị giảm xuống còn 9 triệu đô la nếu được thanh
+toán trước thời hạn đã định. Điều thú vị là, yêu cầu tiền chuộc cho phép nạn nhân
+lựa chọn thanh toán không chỉ bằng Bitcoin (lựa chọn phổ biến nhất) mà còn bằng
+Monero.
+Trong một số trường hợp, các thành viên của BlackCat sử dụng kênh chat để đe 
+dọa nạn nhân, tuyên bố sẽ thực hiện tấn công DDoS vào cơ sở hạ tầng của nạn 
+nhân nếu tiền chuộc không được trả. Khi hành vi này xuất hiện cùng với việc sử 
+dụng trang web rò rỉ thông tin, nó được gọi là tống tiền ba lần, một chiến thuật 
+từng được các nhóm như Avaddon và Suncrypt sử dụng trong quá khứ.
+Một đặc điểm độc đáo của mã độc tống tiền BlackCat là các cuộc trò chuyện 
+thương lượng chỉ có thể được truy cập bởi những người nắm giữ khóa mã truy 
+cập hoặc ghi chú đòi tiền chuộc – nhóm này đã nỗ lực để tránh sự theo dõi của 
+bên thứ ba.
+Các phương án hành động
+Phần này ghi lại các chiến thuật, kỹ thuật và quy trình (TTP) liên quan được sử 
+dụng bởi phần mềm tống tiền BlackCat và các nhà điều hành, liên kết trực tiếp 
+chúng với các sản phẩm và dịch vụ của Palo Alto Networks để bảo vệ chống lại 
+chúng. Phần này cũng hướng dẫn thêm cho khách hàng cách đảm bảo thiết bị của 
+họ được cấu hình đúng cách.
+Phần kết luận
+BlackCat là một họ mã độc tống tiền tinh vi và tiên tiến, đang nhanh chóng nổi 
+tiếng với các cuộc tấn công được tùy chỉnh và cá nhân hóa cao. Bằng cách tận 
+dụng ngôn ngữ lập trình Rust, các tác giả phần mềm độc hại có thể dễ dàng biên 
+dịch nó trên nhiều kiến trúc hệ điều hành khác nhau, điều này tạo điều kiện thuận
+lợi cho nhóm này chuyển hướng từ nạn nhân này sang nạn nhân khác. Giống như 
+các họ mã độc tống tiền khác, BlackCat hoạt động theo mô hình RaaS (Residential 
+Ransomware as a Service - Mã độc dưới dạng dịch vụ) và sử dụng nhiều kỹ thuật 
+tống tiền, sau đó công bố một trang web rò rỉ thông tin để gây thêm áp lực buộc 
+nạn nhân phải trả tiền chuộc.
+Palo Alto Networks phát hiện và ngăn chặn mã độc tống tiền BlackCat theo các 
+cách sau:
+WildFire : Tất cả các mẫu đã biết đều được xác định là phần mềm độc hại.
+Cortex XDR với:
+Các dấu hiệu nhận biết mèo đen.
+Mô-đun chống mã độc tống tiền để phát hiện các hành vi mã hóa của BlackCat 
+trên Windows.
+Phát hiện phân tích cục bộ đối với các tệp nhị phân BlackCat trên Windows.
+Quy tắc BTP ngăn chặn hoạt động của phần mềm tống tiền trên Linux.
+Tường lửa thế hệ tiếp theo : Chữ ký DNS phát hiện các tên miền điều khiển 
+và kiểm soát (C2) đã biết, những tên miền này cũng được phân loại là phần mềm 
+độc hại trong tính năng Lọc URL .
+Nếu bạn cho rằng mình có thể đã bị xâm phạm hoặc có vấn đề khẩn cấp, hãy liên 
+hệ với nhóm Ứng phó Sự cố của Đơn vị 42 hoặc gọi số điện thoại miễn 
+phí tại Bắc Mỹ: 866.486.4842 (866.4.UNIT42), EMEA: +31.20.299.3130, APAC: 
++65.6983.8730, hoặc Nhật Bản: +81.50.1790.0200.
+Palo Alto Networks đã chia sẻ những phát hiện của mình, bao gồm các mẫu tập 
+tin và dấu hiệu xâm phạm, trong báo cáo này với các thành viên khác của Liên 
+minh Đe dọa Mạng (CTA). Các thành viên CTA sử dụng thông tin tình báo này để 
+nhanh chóng triển khai các biện pháp bảo vệ cho khách hàng của họ và để ngăn 
+chặn một cách có hệ thống các tác nhân mạng độc hại. Tìm hiểu thêm về Liên 
+minh Đe dọa Mạng .
