@@ -8,18 +8,11 @@ from pydantic import BaseModel, Field
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.tools import BaseTool
 
-# ==========================================
-# 1. CẤU HÌNH OLLAMA LLM
-# ==========================================
 ollama_llm = LLM(
     model="ollama/qwen2.5:7b",
     base_url="http://localhost:11434",
     temperature=0.2
 )
-
-# ==========================================
-# 2. KHAI BÁO CÁC TOOLS DÙNG CHO AGENT
-# ==========================================
 
 class ListPDFsInput(BaseModel):
     folder_path: str = Field(description="Đường dẫn đến thư mục chứa các file PDF.")
@@ -71,16 +64,10 @@ class ReadSpecificPDFTool(BaseTool):
         except Exception as e:
             return f"Lỗi khi đọc file {filename}: {str(e)}"
 
-
-# ==========================================
-# 3. ĐỊNH NGHĨA SINGLE AGENT & TASK
-# ==========================================
 def run_single_agent_researcher(target_folder: str):
-    # Khởi tạo các công cụ
     list_tool = ListPDFsTool()
     read_tool = ReadSpecificPDFTool()
 
-    # Khai báo Single Agent sở hữu cả 2 tools
     researcher_agent = Agent(
         role="Chuyên gia Nghiên cứu & Lập Báo cáo Khoa học Độc lập",
         goal=(
@@ -96,10 +83,9 @@ def run_single_agent_researcher(target_folder: str):
         llm=ollama_llm,
         verbose=True,
         allow_delegation=False,
-        max_iter=10  # Tăng số bước suy luận để Agent kịp thực hiện chuỗi: List -> Read -> Think -> Write
+        max_iter=10
     )
 
-    # Đơn giản hóa thành 1 Task duy nhất bao hàm toàn bộ quy trình
     comprehensive_task = Task(
         description=(
             f"Hãy thực hiện báo cáo Tổng quan nghiên cứu (Literature Review) từ thư mục: '{target_folder}'.\n\n"
@@ -116,10 +102,9 @@ def run_single_agent_researcher(target_folder: str):
         ),
         expected_output="Báo cáo Literature Review bằng tiếng Việt hoàn chỉnh ở định dạng Markdown.",
         agent=researcher_agent,
-        output_file="literature_review_single_agent.md"  # Tự động xuất ra file markdown
+        output_file="literature_review_single_agent.md"
     )
 
-    # Chạy Crew với 1 Single Agent
     single_crew = Crew(
         agents=[researcher_agent],
         tasks=[comprehensive_task],
@@ -129,10 +114,6 @@ def run_single_agent_researcher(target_folder: str):
 
     return single_crew.kickoff()
 
-
-# ==========================================
-# 4. CHƯƠNG TRÌNH CHÍNH (MAIN)
-# ==========================================
 if __name__ == "__main__":
     pdf_dir = sys.argv[1] if len(sys.argv) > 1 else input("Nhập đường dẫn thư mục chứa các file PDF: ").strip()
 
