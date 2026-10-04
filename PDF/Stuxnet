@@ -1,0 +1,537 @@
+Effects of the Stuxnet Cyberattack on the Natanz Uranium Enrichment Facility: An evaluation of the 
+first known cyberattack in history and an analysis of possible Iranian security hardening procedures at 
+Natanz. 
+By Lawrence Fox, MA, MBA 
+February 24, 2020 
+Introduction 
+Stuxnet is the first known cyberattack in history against critical infrastructure (Langner 2013, 1).  
+This attack resulted in the decommissioning of approximately 1000 Iranian centrifuges at the Pilot Fuel 
+Enrichment Plant in Natanz, thereby effectuating a ten percent reduction in functioning centrifuges  
+(Albright, Brannan, and Walrond 2010).  Unauthorized US government leaks revealed that Operation 
+OLYMPIC GAMES was the code name for a joint United States, Israel, Netherlands, Germany, France, 
+and United Kingdom cyberattack designed to frustrate Iranian nuclear ambitions (Sanger 2012).  The 
+operation is still classified, however, the Stuxnet virus eventually found its way into civilian systems 
+and was extensively analyzed in the academic domain, leading to substantial public interest.   
+Human intelligence aspects of the operation were leaked into the media and culminated in the US 
+government's prosecution of US General James Cartwright; this offense was pardoned by President 
+Obama prior to sentencing, to maintain plausible US deniability for operation OLYMPIC GAMES 
+(Fingas 2017). Despite the moderate success of the attack, it is important to note that Iran keeps at least 
+50% of its centrifuges as spares (Langner 2013, 1).  Removal of the damaged centrifuges was directly  
+confirmed by International Atomic Energy Agency inspectors and continued operations in the wake of 
+the Stuxnet attack were problematic.  During this time, the Iranian government continued to 
+manufacture low enriched uranium at Natanz at reduced efficiency levels (Albright 2010). 
+Thesis 
+The Stuxnet attack against Iran was a modestly successful covert intelligence operation, as it 
+damaged approximately 1000 centrifuges, eroded Iranian confidence in their ability to locally 
+manufacture and master nuclear technology, resulted in the dismissal of several scientists, embarrassed 
+the Iranian government on the world stage, placated Israel and established a political norm for the use 
+of cyberweapons, thereby managing uncertainty facing future decision-makers use of cyberweapons. 
+Literature review 
+The Stuxnet worm is particularly interesting, as it is the first known malware to damage industrial 
+control systems under real-world conditions.  This literature review is focused on exploring three main 
+concepts.  Preventing the introduction of malware through security policies and procedures, detecting 
+the effects of malware, and reducing the vulnerability to Stuxnet type attacks in the future.  The most 
+important discovery from reading the publicly available literature on the Natanz uranium facility 
+cyberattack, was how preventable the attack was.  Ralph Langner's, “To kill a centrifuge” is the most 
+complete analysis of the computer vulnerabilities used in the Stuxnet malware.  Langner's work is 
+particularly important, because it reveals how the computer network actually controls the centrifuge 
+array.  Langner's executive summary states, “post-Stuxnet mitigation strategies like emphasizing the 
+use of air gaps, anti-virus, and security patches are all indications of a failure to understand how the 
+attack actually worked”.  As a U.S. Navy contract network administrator with 10 years of experience in 
+classified and restricted environments, to include sensitive compartmentalized information facilities, I 
+concur with Langner's assessment of the international academic response to the Stuxnet attack.  Stuxnet 
+is more of a physical security policy problem, than a computer security problem, as it relied on physical 
+access to the Natanz computers (Langner 2013, 11). 
+None of the academic or anti-virus corporate assessments of the computer malware extensively 
+addressed the military and scientific nature of the facility the attackers were targeting.  Only Langner's 
+assessment actually discussed the centrifuges in depth and his  assessments are the most insightful in 
+the public domain.  It is surprising that none of the  postmortem reports in the public domain discuss 
+the idea of installing independent, redundant and tamper-resistant safety hardware, for the sole purpose 
+of detecting and stopping a hazardous situation.  The Iranian centrifuge developers understood that 
+vibration sensors were important and added them  to their system since, both their P1 and P2 Zippe
+type related centrifuge designs cycle through resonant frequencies during normal operation (Langner 
+2013, 1).  Prolonged operation at resonant frequencies results in catastrophic failure (Langner 2013, 1).  
+Unfortunately for the Iranians, these vibration sensors were connected to a compromised system and 
+their warnings were suppressed by Stuxnet (Langner 2013, 9).  Creating independent, redundant and 
+tamper-resistant safety mechanisms wherever possible, is an important tool for mitigating the severity 
+of future cyberattacks. 
+A series of assessments by the Institute of Science and International Security gives a detailed 
+assessment of Iranian centrifuge configurations and provides a skilled analysis of raw International 
+Atomic Energy Agency report data.  ISIS reporting concentrates on the technical engineering 
+challenges involved in uranium enrichment and Iranian progress in developing low enriched uranium 
+(Albright, Brannan and Walrond 2010).  These technical aspects must be understood to appreciate the 
+intermittent failure style attack sequence used by Stuxnet. 
+A 2015 news report by Reuters titled, “Exclusive: U.S. Tried Stuxnet-Style Campaign against North 
+Korea but Failed - Sources” reports in some detail about a failed attempt to sabotage the North Korean 
+nuclear program with Stuxnet (Menn 2015).  The report indicates that the attack failed because there 
+was no way to get the malware onto the “core machines that ran  Pyongyang’s nuclear weapons 
+program” (Menn 2015).  This source confirms striking similarities between the Iranian and North 
+Korean program.  The Reuters report confirms the obvious; physical control over an air gapped system 
+is an effective method of preventing both data exfiltration and sabotage (Rist 2006). 
+“Stuxnet under the Microscope” by Matrosov, Rodionov, Harley and Malcho, provides an in depth 
+assessment of the dates and times of the malware's development.  A detailed explanation to the 
+installation of the malware via USB is provided.  The presence of a malicious .LNK file icon being 
+displayed in certain versions of Windows, is enough to execute malicious code, the user does not need 
+to actually run the program (Matrosov, et al. 2020).  The ESET anti-virus company provided a superior 
+analysis of the malware, with intermediate level IT professionals as the target audience. 
+The Symantec “W32.Stuxnet dossier” provides an excellent overview of the worm and offers some 
+small points not found elsewhere (Falliere, Murchu and Chien 2010).  No resource tends to have every 
+feature or point covered, a reading of all the various reviews is necessary to obtain the most complete 
+picture of the Stuxnet malware.  Western anti-virus companies tend to avoid addressing the NSA's 
+involvement in the Stuxnet attack.  Kaspersky's paper, “Equation Group: questions and answers” is the 
+most complete document in the public domain highlighting NSA involvement (Kaspersky 2015).  
+Kaspersky does not actually use the term NSA, but rather calls them the “Equation Group” in their 
+papers.  The authors are quite obviously referring to the NSA.  This paper gives specifics on IP 
+addresses, malware command and control server domain names, specific methods used by NSA to 
+compromise website ads, countries that are off limits to hacking attacks, artifacts such as project code 
+names that were revealed during forensic analysis of Stuxnet and other interesting operational details 
+(Kaspersky 2015).  Eastern sources disclose a wealth of information on NSA tactics, techniques and 
+procedures. 
+David Kushner's article, “The Real Story of Stuxnet” details how several other pieces of malware 
+have been associated with the NSA after analysts observed that they share portions of code (Kushner 
+2013). As a result, Duqu, Flame, and Gauss have all been associated with the NSA (Kushner 2013).  To 
+remove any doubt, highly classified NSA documents leaked by Edward Snowden and published in full 
+by The Intercept, confirm that Flame malware is of NSA origin (The Intercept 2015).  In the literature, 
+a common theme is that forensic analysis of malware frequently leads to clues, even from even state 
+actors with the resources and knowledge to avoid such artifacts in their compiled code.  In the case of 
+Stuxnet, several references were quite intentional (Kushner 2013).   
+Most importantly, the Stuxnet worm is the product of an intelligence agency and was designed 
+to accomplish an intelligence mission (Zetter 2014).  Kim Zetter, a major author on Stuxnet related 
+news, wrote in a Yahoo News article, “Dutch intelligence agency AIVD provided critical data that 
+helped the U.S. developers target their code to the systems at Natanz, according to four intelligence 
+sources” (Zetter and Modderkolk 2019).  The article gives critical details on operation OLYMPIC 
+GAMES, a joint effort established to frustrate Iranian nuclear activities between the US, Israel, the 
+Netherlands, Germany, France and the United Kingdom.  Through the Dutch intelligence agency AVID, 
+a mole setup two Iranian front companies to apply to work on contracts at Natanz (Zetter and 
+Modderkolk 2019).  Months after Stuxnet’s discovery, the Iranians arrested and likely executed several 
+workers at Natanz believing they assisted in delivering the malware onto systems at the plant (Zetter 
+and Modderkolk 2019). Two intelligence sources who spoke to Yahoo News stated that this was true 
+however, they did not comment if the Dutch mole was caught, presumably to preserve a sense of 
+unease in the Iranian intelligence services (Zetter and Modderkolk 2019). 
+The aforementioned leaked NSA documents confirm an active state of cyber warfare, with a 
+trilateral group consisting of the US, UK and Israel, allied against Iran (The Intercept 2015).  The 
+document mentions, “. . . Iran's discovery of network exploitation tools on their networks in 2012 and 
+2013;”  prove that the US, UK and Israel have continued  post-Stuxnet offensive cyber operations 
+against Iran (The Intercept 2015).  The document also confirms Iranian cyberattacks against Saudi 
+Arabian and US computers (The Intercept 2015). 
+Evaluation criteria 
+Considering that the objective of the Stuxnet cyberattack was to damage the Iranian uranium 
+enrichment centrifuges at the pilot fuel enrichment plant at Natanz, operation OLYMPIC GAMES 
+succeeded in that mission.  The International Atomic Energy Agency confirmed that  approximately 
+1000 centrifuges were removed from Natanz.  This attack was directly authorized by President Barack 
+Obama, in furtherance of the US government's long standing nuclear non-proliferation policies (Sanger 
+2012).  The US, nor any of its partners, have suffered any political  blow back from this operation, 
+despite the escape of the Stuxnet computer worm into the public domain. 
+When determining if Operation OLYMPIC GAMES was a success, we can answer a simple,  “yes 
+or no” question to conclude that the mission was accomplished.  Covert actions, like war, cannot be 
+considered successes or failures through simple accounting.  An effective cost benefit analysis of this 
+operation considers the impact on overall uranium enrichment, the length of time  Iran was set back in 
+Uranium production, effects on both Iranian and US international reputations, opportunity costs to the 
+US by making certain computer vulnerabilities public, reducing the potential international outcry 
+surrounding the use of  cyberweapons, by first using them against an unpopular state actor and lastly, 
+diplomatic considerations between the US and Israel. 
+Cyberattacks do not rise to acts of war 
+Cyberattacks are without question, the cutting edge weapon of the future.  They offer policymakers 
+the choice of a non-kinetic attack, one that can still incapacitate enemy infrastructure, usually without 
+direct loss of life.  This expands policymakers’ range of options when using force to achieve a policy 
+goal.  General Hayden former director of NSA and CIA observed, "I would not call it an act of war" 
+referring to the Stuxnet attack against Iran in a CBS news interview (Krofk 2012).  "Look, given my 
+own background Steve, I've got this whole universe of things between peace and war that are called 
+covert actions ... The Iranians have not quite responded to it as if it were an act of war. It's in that space 
+between the two" (Kroft 2012).  An important aspect of using the Stuxnet worm was establishing that 
+cyberattacks resulting in the damage of equipment, even at sensitive nuclear facilities, do not rise to 
+acts of war.  The Iranians have implicitly agreed to this, in that they did not take any overt military 
+action against any of the states involved in operation OLYMPIC GAMES post-attack. 
+Contrast this outcome with the US drone assassination of Major General Qasem Soleimani, head of 
+Iran's Islamic Revolutionary Guard Corps, on January 2, 2020.  The Iranian government  responded to 
+the assassination with a missile strike against nearby US forces, based out of the Al Asad and Irbil  
+airbases, belonging to the Iraqi government (BBC News 2020).  The Iranians fired Fateh-313 and 
+Qiam-1 surface to surface missiles (BBC News 2020), each having a throw-weight of ~500Kg and 
+750Kg respectively (Missile Defense Project 2020).  Sixteen missiles were fired in a strike that 
+ultimately resulted in no US fatalities, but left 64 US soldiers’ brain-damaged, according to a Pentagon 
+statement (Schogol 2020).  Clearly, the Iranians are willing and able to use lethal force against US 
+military personnel.  Through Iranian inaction, we can conclude they do not perceive cyberattacks on 
+critical infrastructure, not resulting in loss of life, to be an act of war.  In light of these facts, the Stuxnet 
+attack reduced political uncertainty surrounding the use of cyberweapons and created an international 
+norm that these weapons do not constitute acts of war. 
+Beyond the use of cyberweapons in covert actions, cyberweapons can be used to complement 
+kinetic operations.  If a military commander is given the choice between the use of lethal weapons 
+system and a cyber-attack, to attack a power grid in a heavily populated civilian area, it is likely the 
+commander would pick the option that would preclude civilian injuries or fatalities, no matter how 
+accurate the weapon system employed.  As an additional inducement to prefer cyberattacks against 
+critical infrastructure where possible, after the facility has been captured by US  forces, an event that 
+can occur over a time span of mere hours, it is likely to be physically undamaged and can be brought 
+back into operation under US control.  This accelerates the inevitable post conflict rebuilding effort, 
+while reducing costs and perhaps most importantly, cyberweapons allow the US to reinforce its war 
+effort with captured enemy infrastructure and resources. 
+Iran is learning cyberwarfare from our attacks 
+Perhaps more concerning is the future enemy use of cyberweapons against the US and other western 
+state actors with substantial military resources.  NSA's own documents state that, “Iran . . . has 
+demonstrated a clear ability to learn from the capabilities and actions of others" (The Intercept 2015).  
+By repeatedly attacking Iran with high-quality malware, Iranian programmers have learned from these 
+attacks and have improved their own capabilities.  Kim Zetter, a writer for Wired magazine, documents 
+a post-Stuxnet attack against Iran called Wiper.  The malware was designed to erase files and crash 
+computers owned by the Iranian Oil Ministry & the National Iranian Oil Company in April 2012 
+(Zetter 2015).  After this attack, Iran attacked Saudi Aramco computers with Shamoon, an attack 
+resulting in total data loss from ~30,000 computers (Zetter 2015).  The corporate disruption was severe 
+and Aramco temporarily stopped selling fuel to local gas tanker trucks for 17 days as it was unable to 
+collect payment (Pagliery 2015).  Aramco ultimately started giving away fuel to local vendors  free of 
+charge, simply to keep gasoline available to Saudi consumers (Pagliery 2015).  Kaspersky researchers 
+have confirmed that Shamoon is a less advanced, copycat of the Wiper malware (Kaspersky 2017). 
+Clearly, cyberattacks allow highly skilled individuals, non-state groups and particularly militarily 
+weak state actors to cause massive disruption inexpensively and potentially unattributively to a more 
+powerful adversary.  Otto von Bismark is quoted as, “Fools learn from experience. I prefer to learn 
+from the experience of others”.  It should be of concern to everyone in the intelligence community that 
+the United States has not learned from the Iranian security blunders exploited in the Stuxnet attack.  
+The Department of Defense's own assessments confirm that “cyber capabilities of other nations exceed 
+U.S. ability to defend systems” (O' Hanlon  2017).  In furtherance of this goal, the academic 
+community should make every effort to publicly analyze the available information on the subject and 
+formulate an actionable strategy to minimize risk to US and allied infrastructure operators.  In light of 
+these facts, it is apparent that the US faces opportunity costs every time it uses innovative malware 
+against an adversary.  Previously unknown security vulnerabilities, once used operationally, become 
+known and therefore unavailable for future operational use.  Additionally, the malware used in an 
+attack will be analyzed by the victim and frequently used in future copycat attacks. 
+Did Stuxnet meaningfully delay the Iranian LEU program? 
+The best information in the public domain concerning Iranian enrichment progress is obtained from 
+IAEA reports.  Unfortunately, the Iranians added centrifuges during the IAEA reporting period making 
+the actual impact of the attack unclear (Albright, Brannan, and Walrond 2010).  An IAEA report dated 
+November 16, 2010 revealed a shutdown of all Natanz centrifuges (Albright, Brannan, and Walrond 
+2010).  Approximately a week later, Iran informed the IAEA that 28 cascades were operating.  “On 
+November 23, Ali Akbar Salehi, the head of Iran’s Atomic Energy Organization, confirmed to IRNA 
+that the virus had indeed reached Iran: “One year and several months ago, Westerners sent a virus to 
+[our] country’s nuclear sites” (Albright, Brannan, and Walrond 2010).  While a one-week total 
+shutdown of enrichment at Natanz is clearly a success and a psychological operations victory, the 
+ultimate impact on Iranian enrichment is fleeting.  Any long-term damage effects caused by Stuxnet, 
+such as shortening the operational life of the affected centrifuges is unknowable.  Considering the 
+addition of new and improved Iranian centrifuges, these effects are unlikely to have any significant 
+strategic impact on Iran's enrichment program. 
+Developing cyberattack resistant enrichment infrastructure 
+Forearmed with the knowledge that supercritical designs, like the P1 and P2 Zippe-type centrifuges 
+(Broad 2004) must pass through resonant speeds, the Iranians may choose to integrate resonance 
+countermeasures into their designs.  Marvin Miller, Senior Scientist Emeritus at both the MIT Center 
+for International Studies, is quoted that, “ A low-tech solution to the problem of flexural vibrations with 
+long rotors is to break up the length of the rotor with short, thin flexible joints located so as to take up 
+the energy of the vibrations at the resonant speeds. While this method is still used in relatively short 
+Aluminum and Maraging steel centrifuges, longer, faster CFRC [Carbon Fiber Resin Composite] 
+machines instead use special drives that can accelerate the rotor rapidly through the resonances before 
+the amplitude of the vibrations grows sufficiently to damage the machine (Miller 2004).  By integrating 
+flexible joints into CFRC centrifuges, reliance on electronically controlled drives to make a quick 
+transition through resonant frequencies is less important, lessening the opportunity for sabotage or 
+cyberattack (Albright and Stricker 2010).  Iran's latest experimental centrifuge, the IR-8 implements a 
+vibration dampening rotor design (Albright and Stricker 2017).  ISIS reports that “. . . [In the IR-8 
+design] the bellows connect the rotor tubes together and allow the entire rotor assembly to be flexible 
+and escape destructive resonant vibrations”.  ISIS report reveals that the IR-8 centrifuge design has four 
+rotor tubes and 3 bellows (Albright and Stricker 2010).  
+ISIS considered the likely effect of a Stuxnet style resonance attack on Iran's new carbon fiber rotor 
+design and concluded that resonance effects would be less destructive against a P2 centrifuge with 
+carbon fiber rotors, as they are more able to withstand high-speed stress (Albright and Stricker 2010).  
+When Iran eventually transitions to its IR-8 centrifuge design, their risk to Stuxnet type resonance 
+attacks will be greatly decreased.  An additional layer of protection, the integration of an optical 
+tachometer connected to an independent, redundant, and tamper-resistant controller could stop the 
+centrifuge automatically if the acceleration or operational characteristics deviate from a predefined 
+profile.  Such an arrangement would mitigate the impact of a hardware damaging attack, by reducing 
+the attack to a mere denial of service. 
+Commercially available sensors such as the Laser Tach LT2 tachometer sensor, for example, allow 
+for measurements up to 100,000 RPM  from distances as far as 20 in (51 cm) and unlike magnetic 
+tachometers, laser sensors do not require the rotating equipment to be a ferrous material, as only a 
+retro-reflective target needs to be attached to the shaft (LT2 Online Catalog Listing 2017).  Laser-based 
+optical tachometers could provide the Iranian operators at Natanz great flexibility in integrating an 
+external sensor into any centrifuge.  IR-4 Iranian centrifuges are only partially made of maraging steel 
+and make extensive use of carbon fiber, an easier to acquire but still embargoed material (Albright and 
+Waldrond 2011).  Iran has completely eliminated maraging steel from its post-IR-4 designs and has 
+transitioned to aluminum, making sensors compatible with non-ferrous materials a relevant design 
+consideration moving forward.  Lastly, integrating a laser sensor need not be particularly expensive.  
+The Neiko 20713A handheld Laser Tachometer detects speeds up to 99,999 RPM and is available on 
+Amazon for $22.39 USD at the time of writing (Amazon 2020).  If Iran desires a proactive approach 
+toward detecting abnormal centrifuge equipment activity, an optical tachometer connected to an 
+independent, redundant and tamper-resistant controller is an excellent option. 
+In the Stuxnet case, a USB drive loaded with malware was used to introduce Stuxnet into the  local 
+network controlling the centrifuges.  Since the network is not connected to the Internet, the only 
+methods of introducing malware is via removable media or through the network cable.  Iranian 
+operators can secure their workstations by physically hardening the computers used by nuclear 
+technicians.  Considering the high-security nature of nuclear facilities, it would not be unreasonable to 
+expend additional resources to increase physical security.  The first step would be to place the existing 
+PC's in hardened, locked, and alarmed enclosures to eliminate unauthorized physical access.  Second, 
+USB devices would be prohibited due to security flaws, only PS/2 type keyboards and mice would be 
+authorized and printers would use only parallel ports (Anthony 2014).  By eliminating any physical 
+access to wiring that could communicate data to the computer system, the workstation cannot become 
+infected while sealed.  Only the keyboard and mouse and parallel port cables will be exposed when the 
+PC security container is locked.  The unauthorized infiltration or exfiltration of data would become 
+impossible. 
+Third, network wiring should be converted to 100% fiber optic cable, due to its inability to leak 
+information via electromagnetic radiation and its immunity to electromagnetic interference (Campbell 
+1999).  Common metallic wiring is subject to electromagnetic induction taps.  The US government 
+used this vulnerability this to tap Soviet undersea cables in the 1970's in operation IVY BELLS 
+(Campbell 1999).  Furthermore, fiber optic cable is physically difficult to tap and results in measurable 
+optical signal loss (Ghosh 2013).  Security consultant Bernard Everett observes, “One method [to tap 
+fiber optic cable] is to bend the cable and extract enough light to sniff out the data” (Ghosh 2013).  
+These fiber optic cable runs can be further protected by covering them with a hose pressurized with 
+nitrogen gas.  If the cable is penetrated the pressure will be released, alerting armed guards to 
+immediately investigate the situation.  This approach was used unsuccessfully by the Soviets to protect 
+underground communication cable runs.  In operation GOLD, US intelligence successfully defeated 
+this protection through the use of a pressurized box (Wallace and Melton 2008, 531).  In this 
+application, the fiber optic cable is much more difficult and time consuming to tap physically, than 
+copper wiring and there is limited excess fiber optic cable to bend. 
+If the wiring is installed in a high visibility location, regularly patrolled by armed guards and visible 
+to Natanz employees, it is unlikely that any intelligence asset would have enough time to successfully 
+tap the pressurized hose, tap the fiber optic cable, connect a computer to the network, hack a vulnerable 
+system and conceal any physical damage to the pressurized hose, while simultaneously avoiding 
+detection from patrolling armed guards and ordinary employees.  To mitigate against internal threats, a 
+two person integrity (TPI) rule should be implemented to open a workstation's security enclosure for 
+maintenance or any other special purpose.  To implement TPI in this situation, two high security locks 
+are installed on the computer security container, two authorized persons must be present while the 
+container is unsecured and lastly, one person can never have both keys to gain lone access to the 
+container (US Navy 1997). 
+Stuxnet embarrassed the Iranians 
+A report by the RAND corporation mentions, “... Iran's reaction to having been deeply embarrassed 
+by Stuxnet, a hack that not only exposed Iran's inadequate approach to cybersecurity but also its 
+fecklessness in running industrial enterprises” (Libicki 2015).  It is likely that embarrassment is the 
+largest effect of the Stuxnet attack.  Ralph Langner is quoted as, “When comparing the Pakistani and 
+the Iranian uranium enrichment programs, one cannot fail to notice a major performance difference. 
+Pakistan basically managed to go from zero to successful LEU production within just two years in 
+times of a shaky economy, without the latest in digital control technology. The same effort took Iran 
+over ten years, despite the jump-start by the Khan network and abundant money from sales of crude oil. 
+If Iran’s engineers didn’t look incompetent before, they certainly did during Operation Olympic 
+Games” (Langner 2013, 16).  Ultimately, the damage done was similar to what would happen if 
+Stuxnet simply overloaded all the centrifuges at once, simply  destroying everything at one time 
+(Langner 2013, 16).  Stuxnet was conceived as low-yield weapon designed to reduce the lifespan of 
+Iran’s P1 centrifuges, while making the engineering team look incompetent. 
+Considered in its entirety, operation OLYMPIC GAMES was an effective psychological operation, 
+demoralizing the Iranian government and its technicians.  As previously mentioned, the long-term 
+effects on the affected Iranian centrifuges is unknown however, the affected centrifuges are but a small 
+percentage of Iran's active program and only had a minor negative impact on Iran's strategic reserve of 
+centrifuges.  The real insult was that the Americans literally laughed at the Iranians on the world stage.  
+President Obama’s chief strategist for counter WMD, Gary Samore, declined to answer a Stuxnet 
+question, while saying with a smile, “I’m glad to hear they are having troubles with their centrifuge 
+machines, and the U.S. and its allies are doing everything we can to make it more complicated” (Broad, 
+Markoff and Sanger 2011). 
+Placating Israel 
+Israeli civilians are so terrified of a Nuclear-armed Iran, that 51% of Israelis favor an immediate 
+strike on Iran as a first resort, according to a 2009 poll conducted by Tel Aviv University (Ynetnews  
+2009).  In 2012, Israel asked the US to assist Israel with advanced “bunker-buster” weapons that would 
+improve its ability to effectively strike underground Iranian nuclear sites (Lubell 2012).  Israel has long 
+been militarily targeting Iranian nuclear interests (Lubell 2012).  Israeli Prime Minister Benjamin 
+Netanyahu indicated that Israel considered military strikes against Iran (Raviv2014).  Reporter Dan 
+Raviv admitted that sources close to the Mossad were pressured by the Obama Administration to stop 
+assassinating Iranian nuclear scientists inside Iran (Raviv 2014).   
+In a shocking admission from Meir Dagan, then director of the Mossad, the Israeli's had a five-point 
+approach to disrupting Iranian nuclear ambitions. Israel's action plan called for “heavy international 
+diplomatic pressure, economic sanctions, support to Iranian minorities and opposition groups to help 
+them topple the regime, the disruption of consignments of equipment and raw materials for the nuclear 
+program and, finally, covert ops, including the sabotage of installations and targeted killings of key 
+figures in the program” (Bergman 2018).  Covert operations between the US and Israel included: the 
+Stuxnet attack, joint sabotage operations to achieve breakdowns in black market equipment destined for 
+Iran, intercepting shipments of equipment destined for Iran, President Obama's announcement outing 
+the hidden enrichment plant at Qom, and the increasing of economic sanctions against Iran (Bergman 
+2018). 
+The targeted killing of scientists was strictly a Mossad operation, never discussed with the 
+Americans because Executive Order 12333 prevented Americans from involvement in assassination 
+(Bergman 2018).  Bermgan reveals that “The Iranians also became paranoid about the possibility that 
+all the equipment and materials they’d acquired on the black market for their nuclear project—for very 
+large sums of money—were infected, and they examined and reexamined each item over and over.  
+These efforts greatly slowed the progress of the nuclear project as a whole” (Bergman 2018).  
+Ultimately, the success or failure of Stuxnet must be viewed as a part of a multifaceted strategy to 
+dissuade Iran from continuing its nuclear pursuits.  Currently, Iran is far from a viable nuclear weapon 
+however, its program preserves the ability to develop one in the future, once its domestic programs are 
+more robust (Bergman 2018).  This position is reinforced by Director of CIA, General Michael 
+Hayden, who told President Obama, “There isn’t an electron or a neutron at Natanz that’s ever going to 
+show up in a nuclear weapon. What they’re building at Natanz is knowledge. What they’re building at 
+Natanz is confidence, and then they will take that knowledge and that confidence and they’ll go 
+somewhere else and enrich uranium. That knowledge, Mr. President, is stored in the brains of the 
+scientists.”  Stuxnet was an important demonstration of solidarity with its close ally Israel.  It is vital to 
+continued US / Israel relations, that the Israeli's believe, that the US takes Iranian nuclear issues 
+seriously, even if the US currently refuses to destroy the Natanz facility with military force. 
+The Stuxnet attack was a success, even if carried out for this reason and no other.  Without the US 
+“doing something”, Israel may have exercised a military option unilaterally, potentially leading to 
+regional instability.  Meir Dagan claimed that Prime Minister Netanyahu had directed Dagan to order 
+preparations for an attack, “... I have decided to place the IDF and you at O plus 30”.  Dagan further 
+comments, “O plus 30” was short for “30 days from an operation,” meaning that Netanyahu was 
+preparing for an attack on Iran without going through proper channels (Bergman 2018).  With 51% 
+public support for a first strike against Iran, this account seems highly plausible (Ynetnews 2009). 
+Conclusions 
+An extensive examination of the available information on the subject of Stuxnet, confirms that 
+Stuxnet was a modestly successful attack with important political ramifications. Stuxnet did result in 
+the decommissioning of approximately 1000 Iranian centrifuges and was therefore a minor victory.  
+More importantly, the Iranians were publicly embarrassed on the world stage.  The joint Stuxnet 
+operation allowed the US to reassure Israel, that the US was a reliable military ally, despite its 
+reluctance to use military force to destroy Natanz.  This achieved the important US policy goal of 
+maintaining good relations with an important ally, in a key geographic location.  Furthermore, by 
+assisting Israel with a cyberattack on Natanz, instead of a kinetic attack, the US preserved stability in 
+the middle east.  Stuxnet was also the first time a state actor used a cyber weapon against critical 
+infrastructure. The attack was clearly successful and it demonstrated offensive US cyberwarfare 
+capabilities, while announcing to the world that the US is willing and able to fight in the cyber domain.  
+Additionally, the international community will certainly take note that, no state actor targeted by a 
+covert cyberattack retaliated with military force, thereby creating political norms for the use of 
+cyberweapons against another state actor.  In light of the establishment of norms concerning the use of 
+cyberweapons against major companies and infrastructure, US politicians are likely to feel more certain 
+about the non-kinetic response of other nations targeted by cyberweapons.  Considering the extensive 
+offensive capabilities of NSA, this may result in the US ultimately employing more cyberweapons 
+operationally. 
+Stuxnet can be perceived as a failure, if the only measure of effectiveness is a major disruption of 
+low enriched uranium production or a major loss of centrifuges.  Stuxnet was not able to achieve these 
+goals and was not designed for this purpose.  In fact, long term fatigue in some of the low capacity 
+cascades are ultimately unimportant, since Iran possesses more reserve centrifuges than they plan to 
+use operationally and the newly developed Iranian IR-8 centrifuge has 16 times the uranium processing 
+capacity of Iran's unreliable, first-generation P1 systems (Albright 2014).  Even a year's production 
+setback of a P1 centrifuge would be strategically irrelevant in light of new Iranian centrifuge 
+technology. 
+Another negative aspect of the Stuxnet attack was the inevitable discovery of a high-quality 
+malware sample to forensically examine and ultimately emulate.  The Iranians made a workable copy 
+of the US Wiper malware used to attack the Iranian Oil Ministry & the National Iranian Oil Company.  
+The Iranian copycat malware dubbed Shamoon worked adequately when deployed operationally,  
+resulting in the paralysis of Aramco and causing a 17-day local fuel shortage in Saudi Arabia 
+(Kaspersky 2017).  While Iranian cyber capabilities will inevitably increase, the NSA's resources dwarf 
+those of Iran; budget documents leaked by Edward Snowden reveal that the NSA's budget for 2013 was 
+10.8 Billion USD (Andrews and Lindeman 2013).  While the Iranians may develop a competent cyber 
+capability, the intelligence community should not expect Iran's cyber capabilities to exceed NSA 
+capabilities in the foreseeable future based on economic disparities alone.  The Stockholm International 
+Peace Research Institute (SIPRI) reported that Iran’s total military expenditure was $13.2 Billion USD 
+in 2018.  The NSA's 2013 budget alone is almost 11 Billion USD, and that's just one US spy agency 
+(Tian et al. 2018). 
+Lastly, an interesting neutral outcome of the Stuxnet attack is that academics and analysts, now have 
+a real world example of a cyberattack against critical infrastructure to analyze.  It is surprising that the 
+literature on Stuxnet does not widely address the idea of implementing independent, redundant and  
+tamper-resistant safety hardware, designed to prevent dangerous conditions in industrial control 
+systems in the event of a cyberattack.  Nor does it adequately address the need for physical security 
+surrounding computers and their networks, when defending against state level adversaries.  
+Unfortunately, it is unlikely that sensitive industries in the US will take serious steps to secure  
+infrastructure vulnerabilities until crippling attacks occur domestically, or until operators of critical 
+infrastructure are compelled by legislation to do so. 
+Bibliography 
+Albright, David. “Technical Note: Making Sense out of the IR-8 Centrifuge.” Institute for 
+Science and International Security, September 23, 2014. https://isis-online.org/isis- 
+reports/detail/technical-note-making-sense-out-of-the-ir-8-centrifuge/8.  
+Albright, David, Paul Brannan, and Christina Walrond. “Did Stuxnet Take Out 1,000 Centrifuges 
+at the Natanz Enrichment Plant? Preliminary Assessment.” Institute for Science and 
+International Security, December 22, 2010. https://isis-online.org/isis-reports/detail/did- 
+stuxnet-take-out-1000-centrifuges-at-the-natanz-enrichment-plant/#15. 
+Albright, David, and Andrea Stricker. “Stuxnet Worm Targets Automated Systems for Frequency 
+Converters: Are Iranian Centrifuges the Target?” Institute for Science and International 
+Security, November 17, 2010. https://isis-online.org/isis-reports/detail/stuxnet-worm-targets- 
+automated-systems-for-frequency-converters-is-irans-ce/8.  
+Albright, David, and Andrea Stricker. “Status of the Iran Nuclear Deal’s Procurement Channel.” 
+Institute for Science and International Security, August 16, 2017. https://isis-online.org/ 
+uploads/isis-reports/documents/Mass_Production_of_Centrifuges_30May2017_Final.pdf.  
+Andrews, Wilson, and Todd Lindeman. “The Black Budget.” The Washington Post, August 29, 
+2013. https://www.washingtonpost.com/wp-srv/special/national/black-budget/. 
+Amazon. “Neiko 20713A Digital Tachometer, Non Contact Laser 2.5 - 99,999 RPM.” 
+Amazon.com, February 18, 2020. https://www.amazon.com/Neiko-20713A-Digital- 
+Tachometer-Contact/dp/B000I5LDVC 
+Anthony, Sebastian. “Massive, Undetectable Security Flaw Found in USB: It’s Time to Get Your 
+PS/2 Keyboard out of the Cupboard.” ExtremeTech, July 31, 2014. 
+https://www.extremetech.com/computing/187279-undetectable-indefensible-security-flaw- 
+found-in-usb-its-time-to-get-your-ps2-keyboard-out-of-the-cupboard.  
+BBC News, “Iran Missile Attack: Did Tehran Intentionally Avoid US Casualties?” World News. 
+BBC, January 8, 2020. https://www.bbc.com/news/world-middle-east-51042156. 
+Bergman, Ronen. “When Israel Hatched a Secret Plan to Assassinate Iranian Scientists.” Politico, 
+March 5, 2018. https://www.politico.com/magazine/story/2018/03/05/israel-assassination- 
+iranian-scientists-217223.  
+Broad, William. “Slender and Elegant, It Fuels the Bomb.” The New York Times, March 23, 
+2004. https://www.nytimes.com/2004/03/23/science/slender-and-elegant-it-fuels-the- 
+bomb.html.  
+Broad, William J, John Markoff , and David E Sanger. “Israeli Test on Worm Called Crucial in 
+Iran Nuclear Delay.” The New York Times, January 15, 2011. https://www.nytimes.com/2011/ 
+01/16/world/middleeast/16stuxnet.html?_r=1&ref=general&src=me&pagewanted=all.  
+Campbell, Duncan. “Interception Capabilities 2000.” FAS, April 1999. 
+https://fas.org/irp/eprint/ic2000/ic2000.htm#N_32_.  
+Cherry, Steven. “How Stuxnet Is Rewriting the Cyberterrorism Playbook.” IEEE Spectrum, 
+October 13, 2010. https://spectrum.ieee.org/podcast/telecom/security/how-stuxnet-is -rewriting-the-cyberterrorism-playbook.  
+Falliere, Nicolas. “Stuxnet Introduces the First Known Rootkit for Industrial Control Systems.” 
+Security Response. Symantec, August 6, 2010. https://www.symantec.com/connect/blogs 
+/stuxnet-introduces-first-known-rootkit-scada-devices.  
+Falliere, Nicholas, Liam Murchu, and Eric Chien. “W32.Stuxnet Dossier.” Security Response. 
+Symantec, November 2010. https://www.symantec.com/content/en/us/enterprise/media/ 
+security_response/whitepapers/w32_stuxnet_dossier.pdf.  
+Fingas, Jon. “Obama Pardons Stuxnet Leak Source James Cartwright.” Engadget, January 17, 
+2017. https://www.engadget.com/2017/01/17/obama-pardons-stuxnet-leak-source/.  
+Ghosh, Shona. “How Spies Could Tap Fibre Cables.” Alphr, June 23, 2013. 
+https://www.alphr.com/news/security/382666/how-spies-could-tap-fibre-cables.  
+GlobalSecurity.Org. “Iran - Military Spending.” GlobalSecurity.Org. Accessed February 25, 
+2020. https://www.globalsecurity.org/military/world/iran/budget.htm.  
+Gross, Michael J. “A Declaration of Cyberwar,” March 2, 2011. 
+https://www.vanityfair.com/news/2011/03/stuxnet-201104. 
+The Intercept, “NSA Document: Iran – Current Topics, Interaction with GCHQ.” The Intercept, 
+February 10, 2015. https://theintercept.com/document/2015/02/10/iran-current-topics- 
+interaction-gchq.  
+Jacinto, Joan. “Building a Cyber Secure Plant.” Building a Cyber Secure Plant. Totally 
+integrated Automation, September 30, 2010. https://www.totallyintegratedautomation.com/ 
+2010/09/building-a-cyber-secure-plant/. 
+Kaspersky, Eugene. “StoneDrill: We’Ve Found New Powerful ‘Shamoon-Ish’ Wiper Malware – 
+and It’s Serious.” Kaspersky Labs, March 6, 2017. https://eugene.kaspersky.com/2017/03/06/ 
+stonedrill-weve-found-new-powerful-shamoon-ish-wiper-malware-and-its-serious. 
+Karnouskos, Stamatis. “Stuxnet Worm Impact on Industrial Cyber-Physical System Security.” 
+SAP Research. Accessed February 5, 2020. https://papers.duckdns.org/files/ 
+2011_IECON_stuxnet.pdf.  
+Kaspersky, “EQUATION GROUP: QUESTIONS AND ANSWERS.” Wikileaks. Kaspersky, 
+February 2015. https://wikileaks.org/ciav7p1/cms/files/Equation_group_questions 
+_and_answers.pdf. 
+Kroft, Steve. “Gen. Hayden: Stuxnet Virus ‘Not an Act of War.’” CBS News, March 5, 2012. 
+https://www.cbsnews.com/news/gen-hayden-stuxnet-virus-not-an-act-of-war/.  
+Kushner, David. “The Real Story of Stuxnet.” IEEE Spectrum. The Real Story of Stuxnet, 
+February 26, 2013. https://spectrum.ieee.org/telecom/security/the-real-story-of-stuxnet.  
+Langner, Ralph. “To Kill a Centrifuge.” The Langner Group, November 2013. 
+https://www.langner.com/wp-content/uploads/2017/03/to-kill-a-centrifuge.pdf.  
+Libicki, Martin C. “Iran: A Rising Cyber Power?” RAND, December 16, 2015. 
+https://www.rand.org/blog/2015/12/iran-a-rising-cyber-power.html.  
+LT2 Online Catalog Listing, “Modal Shop Online Catalog.” ModalShop.com, January 11, 2017. 
+http://www.modalshop.com/laser-tachometer-2??ID=1150  
+LT2 Specifications, “ICP LaserTachometer LT2 Product Specifications.” ModalShop.com, 
+January 11, 2017. http://www.modalshop.com/filelibrary/LaserTach-LT2-Product- 
+Specifications.pdf.  
+Lubell, Maayan. “Israel Asks U.S. for Arms That Could Aid Iran Strike.” Reuters, March 8, 
+2012. https://www.reuters.com/article/us-iran-nuclear-israel-usa-idUSBRE82717220120308.  
+Matrosov, Aleksandr, Eugene Rodionov, David Harley, and Juraj Malcho. “Stuxnet under the 
+Microscope.” ESET. Accessed February 4, 2020. https://www.welivesecurity.com/ 
+media_files/white-papers/Stuxnet_Under_the_Microscope.pdf.  
+Menn, Joseph. “Exclusive: U.S. Tried Stuxnet-Style Campaign against North Korea but Failed - 
+Sources.” Reuters, May 29, 2015. https://www.reuters.com/article/us-usa-northkorea- 
+stuxnet/exclusive-u-s-tried-stuxnet-style-campaign-against-north-korea-but-failed-sources- 
+idUSKBN0OE2DM20150529. 
+Miller, Marvin. “The Gas Centrifuge and Nuclear Proliferation.” Nonproliferation Policy 
+Education Center, October 22, 2004. https://web.archive.org/web/20070716101010/ 
+http://www.npec-web.org/Essays/20041022-GilinskyEtAl-LWR.pdf#page=35.  
+Missile Defense Project, "Qiam-1," Missile Threat, Center for Strategic and International 
+Studies, September 28, 2017, last modified January 15, 2020, https://missilethreat.csis.org 
+missile/qiam-1/.  
+O' Hanlon, Michael E. “Order from Chaos: Cyber Threats and How the US Should Prepare.” 
+Brookings Institution, June 14, 2017. https://www.brookings.edu/blog/order-from -chaos/2017/06/14/cyber-threats-and-how-the-united-states-should-prepare/. 
+Pagliery, Jose. “The inside Story of the Biggest Hack in History.” CNN, August 5, 2015. 
+https://money.cnn.com/2015/08/05/technology/aramco-hack/index.html.  
+Raviv, Dan. “U.S. Pushing Israel to Stop Assassinating Iranian Nuclear Scientists.” CBS News, 
+March 1, 2014. https://www.cbsnews.com/news/us-pushing-israel-to-stop-assassinating- 
+iranian-nuclear-scientists/.  
+Rist, Oliver. “Hack Tales: Air-Gap Networking for the Price of a Pair of Sneakers.” Infoworld, 
+May 29, 2006. https://www.infoworld.com/article/2655459/hack-tales--air-gap-networking- 
+for-the-price-of-a-pair-of-sneakers.html.  
+Sanger, David E. “Obama Order Sped Up Wave of Cyberattacks Against Iran.” New York 
+Times, June 1, 2012. https://www.nytimes.com/2012/06/01/world/middleeast/obama-ordered- 
+wave-of-cyberattacks-against-iran.html.  
+Sanger, David. “U.S. Rejected Aid for Israeli Raid on Iranian Nuclear Site.” New York Times, 
+January 10, 2009. https://www.nytimes.com/2009/01/11/washington/11iran.html.  
+Schogol, Jeff. “64 US Troops Now Being Treated for Traumatic Brain Injury as Toll of Iranian 
+Attack Continues to Increase.” Task and Purpose, January 30, 2020. 
+https://taskandpurpose.com/popular/more-troops-tbi-iraq.  
+Tian, Nan, Aude Fleurant, Alexandra Kuimova, Pieter D Wezeman , and Siemon T Wezeman. 
+“TRENDS IN WORLD MILITARY EXPENDITURE 2018.” Stockholm International Peace 
+Research Institute. SIPRI, April 29, 2018. https://www.sipri.org/sites/default/files/2019- 
+04/fs_1904_milex_2018_0.pdf.  
+US Navy. “Information Systems Technician Training Series Module 1 - Administration and 
+Security NAVEDTRA 14222.” US Navy, 1997. https://www.navybmr.com/study 
+material/itmod1/NAVEDTRA-14222.pdf. 
+Wallace, Robert, and H. Keith Melton. SPYCRAFT. New York, NY: Penguin Group (USA) Inc., 
+2008.  
+Ynetnews. “Poll: Half of Israelis Back Strike on Iran.” Ynetnews, May 24, 2009. 
+https://www.ynetnews.com/articles/0,7340,L-3720638,00.html.  
+Zetter, Kim. “An Unprecedented Look At Stuxnet, The Worlds First Digitial Weapon.” Wired, 
+November 3, 2014. https://www.wired.com/2014/11/countdown-to-zero-day-stuxnet/. 
+Zetter, Kim. “How Digital Detectives Deciphered Stuxnet, the Most Menacing Malware in 
+History.” How Digital Detectives Deciphered Stuxnet, the Most Menacing Malware in 
+History. Wired, July 11, 2011. https://www.wired.com/2011/07/how-digital-detectives- 
+deciphered-stuxnet/.  
+Zetter, Kim. “The NSA Acknowledges What We All Feared: Iran Learns From US 
+Cyberattacks.” Wired, February 10, 2015. https://www.wired.com/2015/02/nsa- 
+acknowledges-feared-iran-learns-us-cyberattacks/.  
+Zetter, Kim, and Huib Modderkolk. “Revealed: How a Secret Dutch Mole Aided the U.S.-Israeli 
+Stuxnet Cyberattack on Iran.” Yahoo News, September 2, 2019. https://news.yahoo.com/ 
+revealed-how-a-secret-dutch-mole-aided-the-us-israeli-stuxnet-cyber-attack-on-iran- 
+160026018.html. 
