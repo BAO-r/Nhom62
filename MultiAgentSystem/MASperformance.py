@@ -5,7 +5,6 @@ from pathlib import Path
 from pypdf import PdfReader
 from crewai import Agent, Crew, Process, Task
 
-# Cấu hình Ollama
 os.environ["OPENAI_API_BASE"] = "http://localhost:11434"
 OLLAMA_MODEL = "ollama/qwen2.5:7b"
 
