@@ -1,0 +1,163 @@
+import os
+import sys
+import time
+from pathlib import Path
+from typing import Type
+from pypdf import PdfReader
+from pydantic import BaseModel, Field
+
+from crewai import Agent, Crew, Process, Task, LLM
+from crewai.tools import BaseTool
+
+ollama_llm = LLM(
+    model="ollama/qwen2.5:7b",
+    base_url="http://localhost:11434",
+    temperature=0.2
+)
+
+class ListPDFsInput(BaseModel):
+    folder_path: str = Field(description="Đường dẫn đến thư mục chứa các file PDF.")
+
+class ListPDFsTool(BaseTool):
+    name: str = "List PDFs Tool"
+    description: str = "Liệt kê danh sách tên tất cả các file PDF có trong thư mục."
+    args_schema: Type[BaseModel] = ListPDFsInput
+
+    def _run(self, folder_path: str) -> str:
+        folder = Path(folder_path)
+        if not folder.exists() or not folder.is_dir():
+            return f"Lỗi: Thư mục '{folder_path}' không tồn tại."
+        
+        pdf_files = [f.name for f in folder.glob("*.pdf")]
+        if not pdf_files:
+            return "Không tìm thấy file PDF nào trong thư mục."
+        
+        return "Danh sách các file PDF tìm thấy:\n- " + "\n- ".join(pdf_files)
+
+
+class ReadSpecificPDFInput(BaseModel):
+    folder_path: str = Field(description="Đường dẫn thư mục chứa file PDF.")
+    filename: str = Field(description="Tên file PDF cần đọc (ví dụ: 'paper1.pdf').")
+    max_chars: int = Field(default=10000, description="Số ký tự tối đa cần trích xuất để tránh quá tải bộ nhớ.")
+
+class ReadSpecificPDFTool(BaseTool):
+    name: str = "Read PDF Tool"
+    description: str = "Đọc và trích xuất nội dung văn bản của một file PDF cụ thể."
+    args_schema: Type[BaseModel] = ReadSpecificPDFInput
+
+    def _run(self, folder_path: str, filename: str, max_chars: int = 10000) -> str:
+        file_path = Path(folder_path) / filename
+        if not file_path.exists():
+            return f"Lỗi: File '{filename}' không tồn tại trong thư mục."
+        
+        try:
+            reader = PdfReader(file_path)
+            extracted_text = ""
+            for page in reader.pages:
+                text = page.extract_text()
+                if text:
+                    extracted_text += text + "\n"
+            
+            if len(extracted_text) > max_chars:
+                extracted_text = extracted_text[:max_chars] + "\n[... Nội dung bị cắt bớt để tối ưu bộ nhớ ...]"
+            
+            return f"--- NỘI DUNG FILE {filename} ---\n{extracted_text}"
+        except Exception as e:
+            return f"Lỗi khi đọc file {filename}: {str(e)}"
+
+def run_single_agent_researcher(target_folder: str):
+    list_tool = ListPDFsTool()
+    read_tool = ReadSpecificPDFTool()
+
+    researcher_agent = Agent(
+        role="Chuyên gia Nghiên cứu & Lập Báo cáo Khoa học Độc lập",
+        goal=(
+            "Tự chủ động quét thư mục PDF, sử dụng công cụ để đọc từng tài liệu, "
+            "trích xuất thông tin, so sánh phản biện và tự tổng hợp thành Báo cáo Literature Review hoàn chỉnh."
+        ),
+        backstory=(
+            "Bạn là một GS.TS nghiên cứu hàng đầu. Bạn làm việc độc lập và hiệu quả: "
+            "biết cách kiểm tra danh sách tài liệu, truy xuất nội dung từng bài báo bằng công cụ được cung cấp, "
+            "phân tích sự khác biệt/khoảng trống nghiên cứu, và tự tay hoàn thiện báo cáo tổng quan."
+        ),
+        tools=[list_tool, read_tool],
+        llm=ollama_llm,
+        verbose=True,
+        allow_delegation=False,
+        max_iter=10
+    )
+
+    comprehensive_task = Task(
+        description=(
+            f"Hãy thực hiện báo cáo Tổng quan nghiên cứu (Literature Review) từ thư mục: '{target_folder}'.\n\n"
+            "Thực hiện theo các bước sau:\n"
+            "1. Sử dụng 'List PDF Tool' để xem danh sách tất cả file PDF trong thư mục.\n"
+            "2. Sử dụng 'Read PDF Tool' để đọc lần lượt từng file PDF tìm được.\n"
+            "3. Phân tích, so sánh các nghiên cứu (phương pháp, kết quả, điểm mâu thuẫn và khoảng trống nghiên cứu).\n"
+            "4. Viết Báo cáo Literature Review bằng tiếng Việt theo cấu trúc:\n"
+            "   - 1. ĐẶT VẤN ĐỀ & TỔNG QUAN\n"
+            "   - 2. PHƯƠNG PHÁP & CÁC HƯỚNG CẬP NHẬT CHÍNH\n"
+            "   - 3. PHÂN TÍCH PHẢN BIỆN & KHOẢNG TRỐNG NGHIÊN CỨU\n"
+            "   - 4. KẾT LUẬN & HƯỚNG PHÁT TRIỂN\n\n"
+            "Lưu ý: Xuất kết quả dưới dạng Markdown hoàn chỉnh."
+        ),
+        expected_output="Báo cáo Literature Review bằng tiếng Việt hoàn chỉnh ở định dạng Markdown.",
+        agent=researcher_agent,
+        output_file="literature_review_single_agent.md"
+    )
+
+    single_crew = Crew(
+        agents=[researcher_agent],
+        tasks=[comprehensive_task],
+        process=Process.sequential,
+        verbose=True
+    )
+
+    start_time = time.time()
+
+    result = single_crew.kickoff()
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    token_usage = getattr(result, 'token_usage', None)
+
+    prompt_tokens = token_usage.prompt_tokens if token_usage else 0
+    completion_tokens = token_usage.completion_tokens if token_usage else 0
+    total_tokens = token_usage.total_tokens if token_usage else 0
+
+    throughput = (completion_tokens / execution_time) if execution_time > 0 else 0
+
+    metrics = {
+        "latency_seconds": round(execution_time, 2),
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "total_tokens": total_tokens,
+        "throughput_tokens_per_sec": round(throughput, 2)
+    }
+
+    return result, metrics
+
+if __name__ == "__main__":
+    pdf_dir = sys.argv[1] if len(sys.argv) > 1 else input("Nhập đường dẫn thư mục chứa các file PDF: ").strip()
+
+    print("\n" + "="*50)
+    print("🚀 BẮT ĐẦU SINGLE AGENT (WITH TOOLS) PHÂN TÍCH & TỔNG HỢP")
+    print("="*50 + "\n")
+
+    final_report, metrics = run_single_agent_researcher(pdf_dir)
+
+    print("\n" + "="*50)
+    print("📄 BÁO CÁO TỔNG QUAN NGHIÊN CỨU (LITERATURE REVIEW)")
+    print("="*50 + "\n")
+    print(final_report)
+
+    print("\n" + "="*50)
+    print("📊 BÁO CÁO CHỈ SỐ HIỆU NĂNG (SINGLE AGENT WITH TOOLS)")
+    print("="*50)
+    print(f"⏱️  Thời gian hoàn thành (Latency) : {metrics['latency_seconds']} giây")
+    print(f"📥 Input Tokens (Prompt)           : {metrics['prompt_tokens']} tokens")
+    print(f"📤 Output Tokens (Completion)     : {metrics['completion_tokens']} tokens")
+    print(f"🔢 Tổng Token tiêu thụ             : {metrics['total_tokens']} tokens")
+    print(f"⚡ Tốc độ sinh token (Throughput)   : {metrics['throughput_tokens_per_sec']} tokens/s")
+    print("="*50)
