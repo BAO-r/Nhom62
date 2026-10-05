@@ -3,5 +3,6 @@ crewai
 pypdf
 pathlib
 langchain
+
 langchain-ollama
 langchain-chroma
