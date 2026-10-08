@@ -2,6 +2,9 @@ ollama>=3.10.6
 crewai
 pypdf
 pathlib
+pdfplumber 
+pdf2image
+pytesseract
 langchain
 langchain-ollama
 langchain-chroma
